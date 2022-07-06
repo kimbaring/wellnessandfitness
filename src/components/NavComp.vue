@@ -29,9 +29,12 @@
 			</div>
 
 			<div class="wrapper">
-				<div class="nav-menu"><ul id="menu-main-menu" class="menu"><li id="menu-item-27" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-27"><router-link to="/">Services</router-link><span><i class="fa fa-2x">&nbsp;&nbsp;&nbsp;&nbsp;</i></span></li>
-<li id="menu-item-14" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14"><router-link to="/login">LOGIN</router-link><span><i class="fa fa-2x">&nbsp;&nbsp;&nbsp;&nbsp;</i></span></li>
-</ul></div>			</div>
+				<div class="nav-menu">
+					<ul id="menu-main-menu" class="menu">
+						<li :id="tab.id" :class="tab.class" v-for="(tab,i) in activeTabs" :key="i"><router-link :to="tab.link">{{tab.label}}</router-link><span><i class="fa fa-2x"></i></span></li>
+					</ul>
+				</div>
+			</div>
 	  </nav>
 		<div class="toggle_nav_close"></div>
 	</div>
@@ -40,6 +43,18 @@
 
 <script>
 export default({
-    name:'NavComp'
+    name:'NavComp',
+	data(){
+		return{
+			allTabs:[
+				{ id:"", class:"", link:"/", label: "Services"},
+				{ id:"", class:"", link:"/login", label: "LOGIN"},
+			],
+			activeTabs:[
+				{ id:"", class:"", link:"/", label: "Services"},
+				{ id:"", class:"", link:"/login", label: "LOGIN"},
+			]
+		};
+	}
 })
 </script>

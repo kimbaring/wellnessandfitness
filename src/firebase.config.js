@@ -1,17 +1,18 @@
 import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDVqmDGqBI-A8OLtUj63svfe-Do5Kxw5Zc",
-    authDomain: "test-app1-43ff9.firebaseapp.com",
-    databaseURL: "https://test-app1-43ff9-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "test-app1-43ff9",
-    storageBucket: "test-app1-43ff9.appspot.com",
-    messagingSenderId: "164150411183",
-    appId: "1:164150411183:web:c3746fd298c4cf233ff95a",
-    measurementId: "G-VVYN8Y2TR6"
-};
+    apiKey: "AIzaSyCQqWfhnITENLWmVFWIYJzeTHfT2WDp-4U",
+    authDomain: "wellnessfitnessapp.firebaseapp.com",
+    databaseURL: "https://wellnessfitnessapp-default-rtdb.firebaseio.com",
+    projectId: "wellnessfitnessapp",
+    storageBucket: "wellnessfitnessapp.appspot.com",
+    messagingSenderId: "609925288780",
+    appId: "1:609925288780:web:954a856f677433e08db5e9",
+    measurementId: "G-K9PVFHTH7W"
   
+};
 
-const fireApp = initializeApp(firebaseConfig);
-
-export default fireApp;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore();
+export default app;

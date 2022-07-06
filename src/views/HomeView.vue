@@ -1,11 +1,17 @@
 <template>
- <banner-comp />
+<header-comp />
+<nav-comp />
+<banner-comp />
 <middle-comp />
 <main-comp />
 <bottom-comp />
+<footer-comp />
 </template>
 
 <script>
+import HeaderComp from '@/components/HeaderComp.vue';
+import NavComp from '@/components/NavComp.vue';
+import FooterComp from '@/components/FooterComp.vue';
 import BannerComp from '@/components/BannerComp.vue';
 import MiddleComp from '@/components/MiddleComp.vue';
 import MainComp from '@/components/MainComp.vue';
@@ -16,6 +22,9 @@ import BottomComp from '@/components/BottomComp.vue';
 
 export default({
   components:{
+    HeaderComp,
+    NavComp,
+    FooterComp,
     BannerComp,
     MiddleComp,
     MainComp,

@@ -17,43 +17,72 @@ function validateForm(obj,rules){
 
             validated[r] = true;
 
-            if(rules[r].isEmail == true &&  obj[r].toLowerCase().match(emailregex))
+            if(rules[r].isEmail &&  obj[r].toLowerCase().match(emailregex))
                 validated[r] = true;
-            else if (rules[r].isEmail == true )
-                validated[r] = 'invalid email';
+            else if (rules[r].isEmail ){
+                validated[r] = 'invalid_email';
+                break;
+            }
 
-            if(rules[r].isInteger == true && obj[r].match(intregex))
+            if(rules[r].isInteger && obj[r].match(intregex))
                 validated[r] = true;
-            else if(rules[r].isInteger == true) 
-                validated[r] = 'invalid number';
+            else if(rules[r].isInteger) {
+                validated[r] = 'invalid_number';
+                break;
+            }
             
-            if(typeof rules[r].minChars == 'number' && rules[r].minChars <= obj[r].length)
+            if(rules[r].regexMatch != null && obj[r].match(rules[r].regexMatch))
                 validated[r] = true;
-            else if(typeof rules[r].minChars == 'number') 
-                validated[r] = 'invalid length';
-
+            else if(rules[r].regexMatch != null) {
+                validated[r] = 'value_and_regex_not_match';
+                break;
+            }
+                
+            if(rules[r].equalTo != null &&  obj[r] == rules[r].equalTo)
+                validated[r] = true;
+            else if(rules[r].equalTo != null) {
+                validated[r] = 'values_not_match';
+                break;
+            }
+            
             if(typeof rules[r].maxChars == 'number' && rules[r].maxChars >= obj[r].length)
                 validated[r] = true;
-            else if(typeof rules[r].minChars == 'number') 
-                validated[r] = 'invalid length';
+            else if(typeof rules[r].minChars == 'number') {
+                validated[r] = 'invalid_length_max';
+                break;
+            }
+
+            if(typeof rules[r].minChars == 'number' && rules[r].minChars <= obj[r].length)
+                validated[r] = true;
+            else if(typeof rules[r].minChars == 'number') {
+                validated[r] = 'invalid_length_min';
+                break;
+            }
+
+            
         }
     }
 
     let someEmpty = false;
-    for(let v in validated){
-        if(validated[v] === 'empty'){
-            validated.allValid = false;
-            rules.callback();
-            someEmpty = true;
-            break;
+    if(rules.callback != null){
+        for(let v in validated){
+            if(validated[v] === 'empty'){
+                validated.allValid = false;
+                rules.callback();
+                someEmpty = true;
+                break;
+            }
         }
     }
     if(!someEmpty){
         for(let v in validated){
             if(validated[v] != true){
                 validated.allValid = false;
-                rules[v].callback(validated[v]);
-                break;
+                if(rules[v].callback != null){
+                    rules[v].callback(validated[v],v);
+                    break;
+                }
+                
             }
         }
     }

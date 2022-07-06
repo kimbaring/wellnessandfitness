@@ -1,9 +1,8 @@
 
 <template>
-  <header-comp />
+
   <nav-comp />
   <RouterView />
-  <footer-comp />
 </template>
 
 <script>
@@ -15,19 +14,12 @@ import '@/assets/js/owl.carousel.min.js';
 import '@/assets/js/jquery.skitter.min.js';
 import '@/assets/js/responsiveslides.min.js';
 
-
 import { RouterLink, RouterView } from 'vue-router';
-import HeaderComp from '@/components/HeaderComp.vue';
-import NavComp from '@/components/NavComp.vue';
-import FooterComp from '@/components/FooterComp.vue';
-
 
 
 export default({
   components:{
-    HeaderComp,
-    NavComp,
-    FooterComp,
+
     RouterLink,
     RouterView
   }
